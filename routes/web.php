@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/bibhu', function(){
     echo 'Hello!';
@@ -63,3 +63,14 @@ Route::fallback(function () {
  echo 'No routes';
 });
 
+//uncoimmit
+Route::get('/about' , function(){
+    return view('page');
+});
+
+// home route
+Route::get('/{name?}',function($name = null){
+    $var = '<h1>Entities</h1>';
+    $data = compact('name','var');
+    return view('home')->with($data);
+});
