@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DemoController;
+use App\Http\Controllers\SingleAction;
+use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -69,23 +72,40 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // // home route
-// Route::get('/{name?}',function($name = null){
-//     $var = '<h1>Entities</h1>';
-//     $data = compact('name','var');
-//     return view('home')->with($data);
-// });
+Route::get('/{name?}',function($name = null){
+    $var = '<h1>Entities</h1>';
+    $data = compact('name','var');
+    return view('home')->with($data);
+});
 
 // Route for layout
 
-Route::get('/',function(){
-    return view('dashboard');
-});
+// Route::get('/',function(){
+//     return view('dashboard');
+// });
 
-Route::get('/about',function(){
-    return view('about');
-});
+// Route::get('/about',function(){
+//     return view('about');
+// });
 
 // Components
-Route::get('/form',function(){
-    return view('form');
-});
+// Route::get('/form',function(){
+//     return view('form');
+// });
+
+
+// Controller
+
+Route::get('/',[DemoController::class,'index']);
+// Route::get('/abouts',[DemoController::class,'abouts']);
+
+Route::get('/abouts/{name}', 'App\Http\Controllers\DemoController@abouts');
+
+
+Route::get('/contacts',SingleAction::class);
+Route::get('/contacts',SingleAction::class);
+
+
+Route::resource('/blog',ResourceController::class);
+
+
